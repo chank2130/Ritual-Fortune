@@ -10,8 +10,8 @@
       margin: 0;
       padding: 0;
       font-family: 'Noto Sans KR', sans-serif;
-      background-color: #fdf9f3;
-      color: #333;
+      background-color: #121212;
+      color: #ffffff;
       display: flex;
       flex-direction: column;
       align-items: center;
@@ -22,22 +22,24 @@
     h1 {
       font-size: 1.5rem;
       margin-bottom: 40px;
+      color: #ffffff;
     }
     #quote-box {
       font-size: 1.3rem;
       font-weight: 500;
-      padding: 30px 20px;
+      padding: 40px 30px;
       margin-bottom: 30px;
-      background: #fff;
-      border-radius: 16px;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.06);
-      width: 90%;
-      max-width: 400px;
-      min-height: 100px;
+      background: #1e1e1e;
+      border-radius: 20px;
+      box-shadow: 0 6px 20px rgba(0,0,0,0.2);
+      width: 85%;
+      max-width: 420px;
+      min-height: 120px;
+      color: #ffffff;
     }
     button {
-      background-color: #3d3d3d;
-      color: white;
+      background-color: #ffbf00;
+      color: #000000;
       border: none;
       padding: 14px 28px;
       font-size: 1rem;
@@ -46,13 +48,13 @@
       transition: background 0.3s;
     }
     button:hover {
-      background-color: #5a5a5a;
+      background-color: #ffcf33;
     }
     footer {
       position: fixed;
       bottom: 20px;
       font-size: 0.8rem;
-      color: #aaa;
+      color: #bbbbbb;
     }
   </style>
 </head>
@@ -62,20 +64,8 @@
   <button onclick="generateQuote()">한 줄 받기</button>
   <footer>홈화면에 추가하면 언제든 열 수 있어요 ✦</footer>
 
+  <script src="quotes.js"></script>
   <script>
-    const quotes = [
-      "지금 안 춤추면, 언제 추려고?",
-      "뚜껑을 잘 닫아. 다 쏟아질 수도 있으니까.",
-      "샤프심이 부러졌을 때처럼, 네 마음도…",
-      "어제 미룬 걸, 오늘도 미루자.",
-      "그냥 그런 날도 있는 거지, 뭐.",
-      "할까 말까 하면, 안 해도 돼.",
-      "지금 멈춘 건, 다시 시작하려는 신호일지도.",
-      "딴짓은 언제나 정답일 수도 있어.",
-      "아무 말도 하지 마. 그게 말이 될 수 있으니까.",
-      "조금은 덜 완벽해도 괜찮아."
-    ];
-
     function generateQuote() {
       const box = document.getElementById('quote-box');
       const randomIndex = Math.floor(Math.random() * quotes.length);
