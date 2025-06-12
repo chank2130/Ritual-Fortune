@@ -10,23 +10,23 @@
       margin: 0;
       padding: 40px 20px 100px;
       font-family: 'Noto Sans KR', sans-serif;
-      background: linear-gradient(160deg, #121212 0%, #1c1c1c 100%);
+      background-color: #121212;
+      background-image: url('https://www.transparenttextures.com/patterns/stardust.png');
+      background-size: cover;
       background-attachment: fixed;
+      background-repeat: repeat;
       color: #ffffff;
       display: flex;
       flex-direction: column;
       align-items: center;
       min-height: 100vh;
       box-sizing: border-box;
-      background-image: radial-gradient(circle at 10% 20%, rgba(255, 255, 255, 0.03) 0%, transparent 40%),
-                        radial-gradient(circle at 80% 90%, rgba(255, 255, 255, 0.02) 0%, transparent 50%),
-                        radial-gradient(circle at 50% 50%, rgba(255, 255, 255, 0.02) 0%, transparent 60%);
     }
     h1 {
       font-size: 1.5rem;
       margin-bottom: 24px;
       color: #ffffff;
-      animation: fadeIn 1s ease-in-out;
+      animation: fadeInDown 1s ease-in-out;
     }
     #quote-box {
       font-size: 1.25rem;
@@ -44,7 +44,8 @@
       justify-content: center;
       text-align: center;
       line-height: 1.6;
-      animation: fadeIn 0.6s ease-in-out;
+      opacity: 0;
+      animation: fadeIn 0.6s ease-in-out forwards;
     }
     button {
       background-color: #ffbf00;
@@ -70,13 +71,17 @@
       from { opacity: 0; transform: translateY(10px); }
       to { opacity: 1; transform: translateY(0); }
     }
+    @keyframes fadeInDown {
+      0% { opacity: 0; transform: translateY(-20px); }
+      100% { opacity: 1; transform: translateY(0); }
+    }
   </style>
 </head>
 <body>
   <h1>📘 리코드 포춘북</h1>
   <div id="quote-box">오늘의 문장을 뽑아보세요</div>
   <button onclick="generateQuote()">한 줄 받기</button>
-  <footer>홈화면에 추가하면 언제든 열 수 있어요 ✦</footer>
+  <footer> Copyright 리:코드✦</footer>
 
   <script src="quotes.js"></script>
   <script>
@@ -84,9 +89,11 @@
       const box = document.getElementById('quote-box');
       const randomIndex = Math.floor(Math.random() * quotes.length);
       box.style.opacity = 0;
+      box.style.transform = 'translateY(10px)';
       setTimeout(() => {
         box.innerText = quotes[randomIndex];
         box.style.opacity = 1;
+        box.style.transform = 'translateY(0)';
       }, 150);
     }
   </script>
