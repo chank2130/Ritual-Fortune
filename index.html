@@ -6,42 +6,81 @@
   <title>리코드 포춘북</title>
   <link rel="icon" href="https://cdn-icons-png.flaticon.com/512/3468/3468379.png">
   <style>
-    html, body {
+    body {
       margin: 0;
       padding: 0;
-      height: 100%;
-      background: #f4f1ed;
       font-family: 'Noto Sans KR', sans-serif;
+      background-color: #fdf9f3;
+      color: #333;
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
+      height: 100vh;
+      text-align: center;
     }
-    header {
+    h1 {
+      font-size: 1.5rem;
+      margin-bottom: 40px;
+    }
+    #quote-box {
       font-size: 1.3rem;
-      font-weight: 600;
-      color: #2c2c2c;
-      margin: 20px 0;
-    }
-    iframe {
+      font-weight: 500;
+      padding: 30px 20px;
+      margin-bottom: 30px;
+      background: #fff;
+      border-radius: 16px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.06);
       width: 90%;
-      max-width: 500px;
-      height: 80vh;
-      border: 1px solid #ccc;
-      border-radius: 12px;
-      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
-      background: white;
+      max-width: 400px;
+      min-height: 100px;
+    }
+    button {
+      background-color: #3d3d3d;
+      color: white;
+      border: none;
+      padding: 14px 28px;
+      font-size: 1rem;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+    button:hover {
+      background-color: #5a5a5a;
     }
     footer {
-      margin: 16px 0;
-      font-size: 0.75rem;
-      color: #888;
+      position: fixed;
+      bottom: 20px;
+      font-size: 0.8rem;
+      color: #aaa;
     }
   </style>
 </head>
 <body>
-  <header>📘 리코드 포춘북</header>
-  <iframe src="fortune.pdf"></iframe>
+  <h1>📘 리코드 포춘북</h1>
+  <div id="quote-box">오늘의 문장을 뽑아보세요</div>
+  <button onclick="generateQuote()">한 줄 받기</button>
   <footer>홈화면에 추가하면 언제든 열 수 있어요 ✦</footer>
+
+  <script>
+    const quotes = [
+      "지금 안 춤추면, 언제 추려고?",
+      "뚜껑을 잘 닫아. 다 쏟아질 수도 있으니까.",
+      "샤프심이 부러졌을 때처럼, 네 마음도…",
+      "어제 미룬 걸, 오늘도 미루자.",
+      "그냥 그런 날도 있는 거지, 뭐.",
+      "할까 말까 하면, 안 해도 돼.",
+      "지금 멈춘 건, 다시 시작하려는 신호일지도.",
+      "딴짓은 언제나 정답일 수도 있어.",
+      "아무 말도 하지 마. 그게 말이 될 수 있으니까.",
+      "조금은 덜 완벽해도 괜찮아."
+    ];
+
+    function generateQuote() {
+      const box = document.getElementById('quote-box');
+      const randomIndex = Math.floor(Math.random() * quotes.length);
+      box.innerText = quotes[randomIndex];
+    }
+  </script>
 </body>
 </html>
