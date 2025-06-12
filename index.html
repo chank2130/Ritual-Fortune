@@ -11,27 +11,24 @@
       padding: 40px 20px 100px;
       font-family: 'Noto Sans KR', sans-serif;
       background-color: #121212;
-      background-image: 
-        radial-gradient(circle at 20% 30%, rgba(255,255,255,0.03) 1px, transparent 1px),
-        radial-gradient(circle at 80% 80%, rgba(255,255,255,0.02) 1px, transparent 1px),
-        radial-gradient(circle at 50% 50%, rgba(255,255,255,0.015) 1px, transparent 1px);
-      background-size: 180px 180px;
-      background-repeat: repeat;
-      background-attachment: fixed;
-      animation: starsTwinkle 10s linear infinite;
       color: #ffffff;
       display: flex;
       flex-direction: column;
       align-items: center;
       min-height: 100vh;
       box-sizing: border-box;
+      position: relative;
+      overflow: hidden;
     }
+
     h1 {
       font-size: 1.5rem;
       margin-bottom: 24px;
       color: #ffffff;
       animation: fadeInDown 1s ease-in-out;
+      z-index: 2;
     }
+
     #quote-box {
       font-size: 1.25rem;
       font-weight: 500;
@@ -50,7 +47,9 @@
       line-height: 1.6;
       opacity: 1;
       transition: opacity 0.4s ease, transform 0.4s ease;
+      z-index: 2;
     }
+
     button {
       background-color: #ffbf00;
       color: #000000;
@@ -60,27 +59,42 @@
       border-radius: 8px;
       cursor: pointer;
       transition: background 0.3s, transform 0.2s;
+      z-index: 2;
     }
+
     button:hover {
       background-color: #ffcf33;
       transform: scale(1.05);
     }
+
     footer {
       position: fixed;
       bottom: 20px;
       font-size: 0.8rem;
       color: #bbbbbb;
+      z-index: 2;
     }
+
+    .star {
+      position: absolute;
+      border-radius: 50%;
+      background-color: rgba(255, 255, 255, 0.5);
+      animation: twinkle 2s infinite ease-in-out;
+    }
+
     @keyframes fadeInDown {
       0% { opacity: 0; transform: translateY(-20px); }
       100% { opacity: 1; transform: translateY(0); }
     }
-    @keyframes starsTwinkle {
+
+    @keyframes twinkle {
       0%, 100% {
-        background-position: 0 0, 0 0, 0 0;
+        opacity: 0.2;
+        transform: scale(0.8);
       }
       50% {
-        background-position: 5px 10px, -10px -5px, 0px 20px;
+        opacity: 1;
+        transform: scale(1.2);
       }
     }
   </style>
@@ -89,10 +103,22 @@
   <h1>📘 리코드 포춘북</h1>
   <div id="quote-box">오늘의 문장을 뽑아보세요</div>
   <button onclick="generateQuote()">한 줄 받기</button>
-  <footer>Copyright 리:코드 ✦</footer>
+  <footer>홈화면에 추가하면 언제든 열 수 있어요 ✦</footer>
 
-  <script src="quotes.js"></script>
   <script>
+    const quotes = [
+      "오늘도 스스로를 믿어보세요.",
+      "작은 시작이 큰 변화를 만듭니다.",
+      "당신의 하루가 반짝이길!",
+      "지금 이 순간을 즐겨보세요.",
+      "기적은 준비된 사람에게 찾아옵니다.",
+      "당신은 이미 충분히 잘하고 있어요.",
+      "천천히 가도 괜찮아요. 멈추지만 않는다면.",
+      "내일의 나는 오늘의 당신에게 감사할 거예요.",
+      "지금 선택이 미래를 만듭니다.",
+      "당신의 가능성은 무한합니다."
+    ];
+
     function generateQuote() {
       const box = document.getElementById('quote-box');
       const randomIndex = Math.floor(Math.random() * quotes.length);
@@ -104,6 +130,29 @@
         box.style.transform = 'scale(1)';
       }, 200);
     }
+
+    function createStars(count = 80) {
+      for (let i = 0; i < count; i++) {
+        const star = document.createElement("div");
+        star.classList.add("star");
+
+        const size = Math.random() * 3 + 1; // 1~4px
+        const posX = Math.random() * window.innerWidth;
+        const posY = Math.random() * window.innerHeight;
+
+        star.style.width = `${size}px`;
+        star.style.height = `${size}px`;
+        star.style.left = `${posX}px`;
+        star.style.top = `${posY}px`;
+        star.style.animationDelay = `${Math.random() * 5}s`;
+
+        document.body.appendChild(star);
+      }
+    }
+
+    window.onload = () => {
+      createStars(80);
+    };
   </script>
 </body>
 </html>
