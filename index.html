@@ -4,20 +4,44 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>리코드 포춘북</title>
+  <link rel="icon" href="https://cdn-icons-png.flaticon.com/512/3468/3468379.png">
   <style>
     html, body {
       margin: 0;
       padding: 0;
       height: 100%;
+      background: #f4f1ed;
+      font-family: 'Noto Sans KR', sans-serif;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+    header {
+      font-size: 1.3rem;
+      font-weight: 600;
+      color: #2c2c2c;
+      margin: 20px 0;
     }
     iframe {
-      width: 100%;
-      height: 100%;
-      border: none;
+      width: 90%;
+      max-width: 500px;
+      height: 80vh;
+      border: 1px solid #ccc;
+      border-radius: 12px;
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+      background: white;
+    }
+    footer {
+      margin: 16px 0;
+      font-size: 0.75rem;
+      color: #888;
     }
   </style>
 </head>
 <body>
+  <header>📘 리코드 포춘북</header>
   <iframe src="fortune.pdf"></iframe>
+  <footer>홈화면에 추가하면 언제든 열 수 있어요 ✦</footer>
 </body>
 </html>
