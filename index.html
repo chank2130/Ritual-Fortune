@@ -8,40 +8,43 @@
   <style>
     body {
       margin: 0;
-      padding: 0;
+      padding: 40px 20px 100px;
       font-family: 'Noto Sans KR', sans-serif;
-      background-color: #121212;
+      background: linear-gradient(160deg, #121212 0%, #1c1c1c 100%);
+      background-attachment: fixed;
       color: #ffffff;
       display: flex;
       flex-direction: column;
       align-items: center;
-      justify-content: flex-start;
       min-height: 100vh;
-      padding: 60px 20px 100px;
       box-sizing: border-box;
+      background-image: radial-gradient(circle at 10% 20%, rgba(255, 255, 255, 0.03) 0%, transparent 40%),
+                        radial-gradient(circle at 80% 90%, rgba(255, 255, 255, 0.02) 0%, transparent 50%),
+                        radial-gradient(circle at 50% 50%, rgba(255, 255, 255, 0.02) 0%, transparent 60%);
     }
     h1 {
       font-size: 1.5rem;
-      margin-bottom: 30px;
+      margin-bottom: 24px;
       color: #ffffff;
+      animation: fadeIn 1s ease-in-out;
     }
     #quote-box {
-      font-size: 1.3rem;
+      font-size: 1.25rem;
       font-weight: 500;
-      padding: 24px 20px;
+      padding: 20px;
       margin-bottom: 30px;
       background: #1e1e1e;
       border-radius: 16px;
-      box-shadow: 0 6px 20px rgba(0,0,0,0.2);
-      width: 90%;
-      max-width: 380px;
-      min-height: 80px;
+      box-shadow: 0 6px 20px rgba(0,0,0,0.3);
+      width: 100%;
+      max-width: 360px;
+      min-height: 100px;
       display: flex;
       align-items: center;
       justify-content: center;
       text-align: center;
-      line-height: 1.5;
-      color: #ffffff;
+      line-height: 1.6;
+      animation: fadeIn 0.6s ease-in-out;
     }
     button {
       background-color: #ffbf00;
@@ -51,16 +54,21 @@
       font-size: 1rem;
       border-radius: 8px;
       cursor: pointer;
-      transition: background 0.3s;
+      transition: background 0.3s, transform 0.2s;
     }
     button:hover {
       background-color: #ffcf33;
+      transform: scale(1.05);
     }
     footer {
       position: fixed;
       bottom: 20px;
       font-size: 0.8rem;
       color: #bbbbbb;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
     }
   </style>
 </head>
@@ -75,7 +83,11 @@
     function generateQuote() {
       const box = document.getElementById('quote-box');
       const randomIndex = Math.floor(Math.random() * quotes.length);
-      box.innerText = quotes[randomIndex];
+      box.style.opacity = 0;
+      setTimeout(() => {
+        box.innerText = quotes[randomIndex];
+        box.style.opacity = 1;
+      }, 150);
     }
   </script>
 </body>
